@@ -480,6 +480,12 @@ class Forms extends Component
             foreach ($rows as $rowIndex => $rowData) {
                 foreach ($rowData['fields'] as $fieldIndex => $fieldData) {
                     $settings = $fieldData['settings'];
+    
+                    foreach ($settings as $key => $value) {
+                        if (str_starts_with($key, "form_")) {
+                            ArrayHelper::remove($settings, $key);
+                        }
+                    }
 
                     ArrayHelper::remove($settings, 'label');
                     ArrayHelper::remove($settings, 'handle');
